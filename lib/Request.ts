@@ -1,11 +1,8 @@
-import { ClientRequest, ServerResponse } from 'http';
-export async function request (options: ClientRequest & {
-	body: string
-}): Promise<ServerResponse & {
-	body: string
-}> {
+export async function request (
+	options: string | any | URL): Promise<any> {
 	const { protocol }: any = options;
-	const http = require(protocol.replace(':', ''));
+	const prot = protocol.replace(':', '');
+	const http = require(prot);
 	return await new Promise((resolve, reject) => {
 		const bodyCollect: Array<number> = [];
 		const req = http.request(options, (res: any) => {
