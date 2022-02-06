@@ -25,9 +25,8 @@ jobs:
         key: ${{ runner.os }}-${{ github.repository }}-node-modules-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
           ${{ runner.os }}-${{ github.repository }}-node-modules-
-    - run: |
-       yarn cache clean
-       yarn install
+    - if: steps.node-cache.outputs.cache-hit != 'true'
+      run: yarn install
     - run: |
        ${{ matrix.yarn }}
     - uses: corcc/publish@master
