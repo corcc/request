@@ -17,3 +17,4 @@ export declare const scripts: {
         };
     };
 };
+//# sourceMappingURL=Config.d.ts.map
