@@ -1,0 +1,14 @@
+{
+	"extends":"./tsconfig.paths.json",
+	"compilerOptions": {
+		"declaration": true,
+		"declarationMap": false,
+		"sourceMap": false,
+		"removeComments": true,
+		"importHelpers": true,
+		"noEmitOnError": true,
+		"isolatedModules": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true
+	}
+}

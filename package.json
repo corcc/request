@@ -1,0 +1,39 @@
+{
+	"name": "@corcc/request",
+	"version": "1.0.0",
+	"license": "WTFPL",
+	"description": "",
+	"main": "build/index.js",
+	"scripts": {
+		"clear": "tsc --build --clean",
+		"lint:fix": "eslint --fix --ext .ts,.tsx .",
+		"lint": "eslint --ext .ts,.tsx .",
+		"test": "ts-node ./test",
+		"build": "yarn clear && tsc"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/corcc/request.git"
+	},
+	"author": "TaYaKi71751",
+	"bugs": {
+		"url": "https://github.com/corcc/request/issues"
+	},
+	"devDependencies": {
+		"@types/node": "^17.0.23",
+		"@typescript-eslint/eslint-plugin": "^5.17.0",
+		"@typescript-eslint/parser": "^5.17.0",
+		"eslint": "^7.32.0",
+		"eslint-config-standard": "^16.0.3",
+		"eslint-plugin-import": "^2.25.4",
+		"eslint-plugin-node": "^11.1.0",
+		"eslint-plugin-promise": "^5.2.0"
+	},
+	"dependencies": {
+		"@corcc/http-logger": "github:corcc/logger#http",
+		"@types/typescript": "^2.0.0",
+		"ts-node": "^10.7.0",
+		"typescript": "^4.5.4",
+		"util": "^0.12.4"
+	}
+}

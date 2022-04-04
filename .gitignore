@@ -1,0 +1,12 @@
+node_modules/**
+node_modules/
+node_modules
+
+package-lock.json
+yarn**
+yarn**.*
+yarn/**
+.yarn/**
+
+!yarn.lock
+!package.json

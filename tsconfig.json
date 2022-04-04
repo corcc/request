@@ -1,0 +1,14 @@
+{
+	"extends": "./tsconfig.emit.json",
+	"compilerOptions": {
+		"target": "esnext",
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"strict": true,
+		"noImplicitThis": true,
+		"alwaysStrict": true,
+		"noImplicitReturns": true,
+		"noImplicitOverride": true,
+		"skipLibCheck": true
+	}
+}
