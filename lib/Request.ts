@@ -20,28 +20,32 @@ export function getProtocol (
 
 export async function request (
 	options: |
-		RequestOptions&{body?:Buffer}|
-		URL&{body?:Buffer}|
+		RequestOptions|
+		URL|
 		string,
-	body?:Buffer,
+	body?:Array<number|undefined>|Buffer,
 	logger?:HttpLogger
-): Promise<IncomingMessage & {body?:Buffer}> {
+): Promise<IncomingMessage & {body?:Array<number|undefined>|Buffer}> {
 	const _logger:HttpLogger = logger || new HttpLogger();
 	const protocol = getProtocol(options);
 	const client = getClient(protocol);
 	return await new Promise((resolve, reject) => {
 		const req = client.request(options, (
-			res:IncomingMessage & {body?:Buffer}
+			res:IncomingMessage & {body?:Array<number|undefined>|Buffer}
 		) => {
-			const body:Array<Buffer> = [];
-			const getBody = function () { return Buffer.concat(body); };
+			const body:Array<number> = [];
+			const appendBody = (chunk:Buffer) => {
+				chunk.forEach((x:number) => {
+					body.push(x);
+				});
+			};
 			res.on('data', (chunk:Buffer) => {
-				body.push(chunk);
-				res.body = getBody();
+				appendBody(chunk);
+				res.body = Buffer.from(body);
 				_logger.res.data({ req, res });
 			});
 			res.on('end', () => {
-				res.body = getBody();
+				res.body = Buffer.from(body);
 				_logger.res.end({ req, res });
 				resolve(res);
 			});
