@@ -6,31 +6,19 @@ jobs:
   job:
     name: Build 🔧
     runs-on: ubuntu-latest
-    strategy:
-     matrix:
-      yarn:
-        - 'yarn build'
     steps:
+    - uses: actions/checkout@master
+    - uses: pnpm/action-setup@master
+      with:
+        version: latest
     - uses: actions/setup-node@v2
       with:
         node-version: 'lts/*'
-    - uses: actions/checkout@master
-    - id: node-cache
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-node-modules
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-${{ github.repository }}-node-modules-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-${{ github.repository }}-node-modules-
-    - if: steps.node-cache.outputs.cache-hit != 'true'
-      run: yarn install
-    - run: |
-       ${{ matrix.yarn }}
+        cache: 'pnpm'
+    - run: pnpm install
+    - run: pnpm build
     - uses: corcc/publish@node
-      if: ${{ contains(matrix.yarn, 'build') }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        TZ: 'Asia/Tokyo'
         TASK_NAME: 🔧
-        TIMEZONE: 'Asia/Tokyo'

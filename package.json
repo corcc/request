@@ -27,13 +27,13 @@
 		"eslint-config-standard": "^16.0.3",
 		"eslint-plugin-import": "^2.25.4",
 		"eslint-plugin-node": "^11.1.0",
-		"eslint-plugin-promise": "^5.2.0"
-	},
-	"dependencies": {
-		"@corcc/http-logger": "github:corcc/logger#http",
-		"@types/typescript": "^2.0.0",
+		"eslint-plugin-promise": "^5.2.0",
 		"ts-node": "^10.7.0",
+		"tslib": "^2.4.0",
 		"typescript": "^4.5.4",
 		"util": "^0.12.4"
+	},
+	"dependencies": {
+		"@corcc/http-logger": "github:corcc/logger#http"
 	}
 }
